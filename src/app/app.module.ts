@@ -7,6 +7,7 @@ import { CalculadoraModule } from './calculadora';
 import { ConversorModule } from './conversor/conversor.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { JogodavelhaModule } from './jogodavelha/jogodavelha.module';
+import { OlaMundoModule } from './ola-mundo/ola-mundo.module';
 import { TarefasModule } from './tarefas/tarefas.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TarefasModule } from './tarefas/tarefas.module';
     ConversorModule,
     TarefasModule,
     JogodavelhaModule,
+    OlaMundoModule,
     AppRoutingModule
   ],
   providers: [],
