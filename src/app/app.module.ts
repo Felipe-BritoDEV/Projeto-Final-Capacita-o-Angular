@@ -9,6 +9,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { JogodavelhaModule } from './jogodavelha/jogodavelha.module';
 import { OlaMundoModule } from './ola-mundo/ola-mundo.module';
 import { TarefasModule } from './tarefas/tarefas.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TarefasModule } from './tarefas/tarefas.module';
     TarefasModule,
     JogodavelhaModule,
     OlaMundoModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
