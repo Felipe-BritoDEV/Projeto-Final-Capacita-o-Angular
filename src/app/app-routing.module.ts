@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CadastroRoutes } from './components/cadastro/cadastro-routing.module';
 import { CalculadoraRoutes } from './calculadora/calculadora-routing.module';
 import { ConversorRoutes } from './conversor/conversor-routing.module';
 import { DashboardRoutes } from './dashboard/dashboard-routing.module';
 import { JogoDaVelhaRoutes } from './jogodavelha/jogodavelha-routing.module';
+import { LoginRoutes } from './components/login/login-routing.module';
 import { OlaMundoRoutes } from './ola-mundo/olamundo-routing.module';
 import { TarefaRoutes } from './tarefas/tarefas-routing.module';
 
 export const routes: Routes = [
 	{ 
 		path: '', 
-		redirectTo: '/dashboard', 
+		redirectTo: '/login', 
 		pathMatch: 'full' 
 	},
 	...DashboardRoutes,
@@ -18,7 +20,9 @@ export const routes: Routes = [
 	...ConversorRoutes,
 	...TarefaRoutes,
 	...JogoDaVelhaRoutes,
-	...OlaMundoRoutes
+	...OlaMundoRoutes,
+	...LoginRoutes,
+	...CadastroRoutes
 ];
 
 @NgModule({
