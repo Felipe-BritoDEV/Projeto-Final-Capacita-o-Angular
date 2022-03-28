@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ServCalculadoraService } from '../services/serv-calculadora.service';
 
 @Component({
@@ -15,10 +16,11 @@ export class CompCalculadoraComponent implements OnInit {
   private operacao: string;
 
 
-  constructor(private CalculadoraService : ServCalculadoraService) { }
+  constructor(private CalculadoraService : ServCalculadoraService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.limpar();
+    
   }
 
   limpar(): void {
