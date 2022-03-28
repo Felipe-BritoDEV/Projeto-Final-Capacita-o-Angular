@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-olamundo',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./ola-mundo.component.css']
 })
 export class OlaMundoComponent {
-  title = 'Olá Mundo!';
+  user: User;
+
+  constructor() {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
+  title = 'Olá Mundo';
 }
