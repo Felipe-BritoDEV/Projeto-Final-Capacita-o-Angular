@@ -12,11 +12,11 @@ export class AppComponent {
   }
   
   ngOnInit(){
-    console.log(this.authService.showNavBar)
+    
   }
 
   get showNavBar(): boolean {
-    console.log(this.authService.showNavBar)
+    
     return this.authService.showNavBar;
   }
 }

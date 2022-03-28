@@ -10,7 +10,7 @@ import { User } from '../models/user';
 
 export class AuthService {
 
-  private _showNavBar: boolean = false;
+  public _showNavBar: boolean = false;
 
 
   constructor(
