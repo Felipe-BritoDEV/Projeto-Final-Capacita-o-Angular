@@ -13,9 +13,11 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService ) { }
 
   ngOnInit(): void {
+    console.log(this.authService.showNavBar)
   }
 
   signIn(user: User, password: string){
     this.authService.signIn(user.email, password);
   }
+
 }

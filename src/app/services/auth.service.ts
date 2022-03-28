@@ -10,7 +10,8 @@ import { User } from '../models/user';
 
 export class AuthService {
 
-  
+  private _showNavBar: boolean = false;
+
 
   constructor(
     private afAuth : AngularFireAuth,
@@ -34,6 +35,7 @@ export class AuthService {
   }
 
   signIn(email: string, password: string){
+    
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result: any) => {
@@ -41,6 +43,7 @@ export class AuthService {
           users.forEach((user) => {
             localStorage.setItem('user', JSON.stringify(user.data()))
           })
+          this._showNavBar = true;
         });
         this.router.navigate(['ola-mundo']);
       })
@@ -71,4 +74,7 @@ export class AuthService {
   }
 
 
+  get showNavBar(): boolean{
+    return this._showNavBar;
+  }
 }
