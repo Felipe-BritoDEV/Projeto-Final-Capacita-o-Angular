@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor(private router: Router, private authService : AuthService) { }
+  constructor(private router: Router, public authService : AuthService) { }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,18 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Trocar a senha</h3>
+        <p class="text-center">Identifique-se para receber um e-mail com as instruções e o link para criar uma nova senha.</p>
+        <div class="formGroup">
+          <input type="email" class="formControl" placeholder="Email Address" #passwordResetEmail required>
+        </div>
+        <!-- Calling ForgotPassword from AuthService Api -->
+        <div class="formGroup">
+          <input type="submit" class="btn btnPrimary" value="Trocar Senha" (click)="authService.ForgotPassword(passwordResetEmail.value)">
+        </div>
+      </div>
+      <div class="redirectToLogin">
+        <a class="redirect" routerLink="/login"> Voltar </a>
+      </div>
+    </div>
+</div>

@@ -8,6 +8,8 @@ import { JogoDaVelhaRoutes } from './jogodavelha/jogodavelha-routing.module';
 import { LoginRoutes } from './components/login/login-routing.module';
 import { OlaMundoRoutes } from './ola-mundo/olamundo-routing.module';
 import { TarefaRoutes } from './tarefas/tarefas-routing.module';
+import { ForgetpassRoutes } from './components/forgotpass/forgotpass-routing.module';
+import { VerifyRoutes } from './components/verify/verify-routing.module';
 
 export const routes: Routes = [
 	{ 
@@ -22,7 +24,9 @@ export const routes: Routes = [
 	...JogoDaVelhaRoutes,
 	...OlaMundoRoutes,
 	...LoginRoutes,
-	...CadastroRoutes
+	...CadastroRoutes,
+	...ForgetpassRoutes,
+	...VerifyRoutes,
 ];
 
 @NgModule({

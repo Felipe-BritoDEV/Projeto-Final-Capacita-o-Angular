@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
@@ -12,21 +12,35 @@ export class AuthService {
 
   public _showNavBar: boolean = false;
 
+  userData: any;
 
   constructor(
     private afAuth : AngularFireAuth,
     private firestore : AngularFirestore,
-    private router : Router
-  ) { }
+    private router : Router,
+    private ngZone: NgZone
+  ) { 
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
+  }
 
   
 
-  signUp(user: User, password: string){
+  signUp(u: User, password: string){
     return this.afAuth
-      .createUserWithEmailAndPassword(user.email, password)
+      .createUserWithEmailAndPassword(u.email, password)
+      .then(() => this.SendVerificationMail())
       .then((result: any ) => {
-        this.SetUserData(result.user, user);
-        this.router.navigate(['']);
+        this.SetUserData(result.user, u);
+        this.router.navigate(['verify-email']);
       })
       .catch((error: any) => {
         //this.displayMessage(error.message, true);
@@ -70,6 +84,54 @@ export class AuthService {
 
     return userRef.set(userData, {
       merge: true,
+    });
+  }
+
+  ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth
+      .sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }
+
+
+  SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email']);
+      });
+  }
+
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
+  }
+
+  /*AuthLogin(provider: any) {
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['dashboard']);
+        });
+        this.SetUserData(result.user);
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }*/
+
+
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in']);
     });
   }
 

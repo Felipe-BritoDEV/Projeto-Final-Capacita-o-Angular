@@ -18,13 +18,18 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { LoginComponent } from './components/login/login.component';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
+import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
+import { VerifyComponent } from './components/verify/verify.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotpassComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,7 @@ import { FormsModule } from '@angular/forms';
     AngularFirestoreModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
